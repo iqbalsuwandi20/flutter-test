@@ -45,7 +45,7 @@ class IntroductionView extends GetView<IntroductionController> {
       showNextButton: false,
       done: const Text("Masuk"),
       onDone: () {
-        Get.offAndToNamed(Routes.HOME);
+        Get.offAndToNamed(Routes.LOGIN);
       },
     );
   }
