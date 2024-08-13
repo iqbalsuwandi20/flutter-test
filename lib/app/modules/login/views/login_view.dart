@@ -11,72 +11,113 @@ class LoginView extends GetView<LoginController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: ListView(
-      padding: const EdgeInsets.all(20),
-      children: [
-        GetBuilder<LoginController>(
-          init: LoginController(),
-          builder: (controller) => Lottie.asset("assets/login-page.json"),
-        ),
-        TextField(
-          controller: controller.emailC,
-          autocorrect: false,
-          keyboardType: TextInputType.emailAddress,
-          textInputAction: TextInputAction.next,
-          decoration: const InputDecoration(
-              icon: Icon(Icons.email),
-              labelText: "Email",
-              border: OutlineInputBorder()),
-        ),
-        const SizedBox(
-          height: 20,
-        ),
-        Obx(
-          () => TextField(
-            controller: controller.passC,
-            autocorrect: false,
-            textInputAction: TextInputAction.done,
-            obscureText: controller.isHidden.value,
-            decoration: InputDecoration(
-                suffixIcon: IconButton(
-                    onPressed: () => controller.isHidden.toggle(),
-                    icon: const Icon(
-                      Icons.remove_red_eye,
+      body: Form(
+        key: controller.formKey,
+        child: ListView(
+          padding: const EdgeInsets.all(20),
+          children: [
+            Lottie.asset("assets/login-page.json"),
+            // GetBuilder<LoginController>(
+            //   init: LoginController(),
+            //   builder: (controller) => Lottie.asset("assets/login-page.json"),
+            // ),
+            TextFormField(
+              controller: controller.emailC,
+              autocorrect: false,
+              keyboardType: TextInputType.emailAddress,
+              textInputAction: TextInputAction.next,
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return "email tidak boleh kosong";
+                }
+                return null;
+              },
+              decoration: const InputDecoration(
+                  icon: Icon(Icons.email_outlined),
+                  labelText: "Email",
+                  border: OutlineInputBorder()),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Obx(
+              () => TextFormField(
+                controller: controller.passC,
+                autocorrect: false,
+                textInputAction: TextInputAction.done,
+                obscureText: controller.isHidden.value,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "password tidak boleh kosong";
+                  }
+                  return null;
+                },
+                decoration: InputDecoration(
+                    suffixIcon: IconButton(
+                        onPressed: () => controller.isHidden.toggle(),
+                        icon: Icon(
+                          controller.isHidden.value
+                              ? Icons.visibility_off_outlined
+                              : Icons.visibility_outlined,
+                        )),
+                    icon: const Icon(Icons.lock_outline),
+                    labelText: "Password",
+                    border: const OutlineInputBorder()),
+              ),
+            ),
+            const SizedBox(
+              height: 50,
+            ),
+            // Row(
+            //   children: [
+            //     Obx(
+            //       () => Checkbox(
+            //         value: controller.rememberMe.value,
+            //         activeColor: Colors.yellow[900],
+            //         onChanged: (value) {
+            //           controller.rememberMe.value =
+            //               !controller.rememberMe.value;
+            //         },
+            //       ),
+            //     ),
+            //     const Text("Ingatkan saya"),
+            //   ],
+            // ),
+            // const SizedBox(
+            //   height: 20,
+            // ),
+            ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.yellow[900]),
+                onPressed: () {
+                  if (controller.formKey.currentState!.validate()) {}
+                  controller.login();
+                },
+                child: const Text(
+                  "Login",
+                  style: TextStyle(color: Colors.white),
+                )),
+            const SizedBox(
+              height: 5,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text("Belum punya akun?"),
+                TextButton(
+                    onPressed: () => Get.toNamed(Routes.REGISTER),
+                    child: Text(
+                      "Register",
+                      style: TextStyle(
+                        color: Colors.yellow[900],
+                        fontWeight: FontWeight.bold,
+                      ),
                     )),
-                icon: const Icon(Icons.key_off_outlined),
-                labelText: "Password",
-                border: const OutlineInputBorder()),
-          ),
+              ],
+            ),
+          ],
         ),
-        const SizedBox(
-          height: 50,
-        ),
-        ElevatedButton(
-            style:
-                ElevatedButton.styleFrom(backgroundColor: Colors.yellow[900]),
-            onPressed: () {},
-            child: const Text(
-              "Login",
-              style: TextStyle(color: Colors.white),
-            )),
-        const SizedBox(
-          height: 5,
-        ),
-        const Text("Belum punya akun? silahkan buat terlebih dahulu"),
-        const SizedBox(
-          height: 5,
-        ),
-        ElevatedButton(
-            style:
-                ElevatedButton.styleFrom(backgroundColor: Colors.yellow[900]),
-            onPressed: () {
-              Get.toNamed(Routes.REGISTER);
-            },
-            child: const Text(
-              "Register",
-              style: TextStyle(color: Colors.white),
-            )),
-      ],
-    ));
+      ),
+    );
   }
 }
