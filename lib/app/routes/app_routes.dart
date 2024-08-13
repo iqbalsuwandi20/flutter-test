@@ -11,6 +11,7 @@ abstract class Routes {
   static const PROFILE = _Paths.PROFILE;
   static const ROLE = _Paths.ROLE;
   static const EDIT = _Paths.EDIT;
+  static const DELETE = _Paths.DELETE;
 }
 
 abstract class _Paths {
@@ -23,4 +24,5 @@ abstract class _Paths {
   static const PROFILE = '/profile';
   static const ROLE = '/role';
   static const EDIT = '/edit';
+  static const DELETE = '/delete';
 }

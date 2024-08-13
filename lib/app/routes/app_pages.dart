@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import '../modules/delete/bindings/delete_binding.dart';
+import '../modules/delete/views/delete_view.dart';
 import '../modules/edit/bindings/edit_binding.dart';
 import '../modules/edit/views/edit_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -64,6 +66,11 @@ class AppPages {
       name: _Paths.EDIT,
       page: () => const EditView(),
       binding: EditBinding(),
+    ),
+    GetPage(
+      name: _Paths.DELETE,
+      page: () => const DeleteView(),
+      binding: DeleteBinding(),
     ),
   ];
 }

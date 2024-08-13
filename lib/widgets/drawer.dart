@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:test_flutter/app/routes/app_pages.dart';
+
+import '../app/routes/app_pages.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
@@ -53,6 +54,14 @@ class CustomDrawer extends StatelessWidget {
                   },
                   leading: const Icon(Icons.edit),
                   title: const Text("Edit Nama dan Pekerjaan"),
+                  trailing: const Icon(Icons.arrow_forward),
+                ),
+                ListTile(
+                  onTap: () {
+                    Get.toNamed(Routes.DELETE);
+                  },
+                  leading: const Icon(Icons.delete_forever_outlined),
+                  title: const Text("Delete data"),
                   trailing: const Icon(Icons.arrow_forward),
                 ),
               ],
