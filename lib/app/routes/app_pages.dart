@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import '../modules/edit/bindings/edit_binding.dart';
+import '../modules/edit/views/edit_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/introduction/bindings/introduction_binding.dart';
@@ -57,6 +59,11 @@ class AppPages {
       name: _Paths.ROLE,
       page: () => const RoleView(),
       binding: RoleBinding(),
+    ),
+    GetPage(
+      name: _Paths.EDIT,
+      page: () => const EditView(),
+      binding: EditBinding(),
     ),
   ];
 }

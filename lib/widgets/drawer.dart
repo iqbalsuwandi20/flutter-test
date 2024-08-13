@@ -47,6 +47,14 @@ class CustomDrawer extends StatelessWidget {
                   title: const Text("Input Nama dan Pekerjaan"),
                   trailing: const Icon(Icons.arrow_forward),
                 ),
+                ListTile(
+                  onTap: () {
+                    Get.toNamed(Routes.EDIT);
+                  },
+                  leading: const Icon(Icons.edit),
+                  title: const Text("Edit Nama dan Pekerjaan"),
+                  trailing: const Icon(Icons.arrow_forward),
+                ),
               ],
             ),
           ),
